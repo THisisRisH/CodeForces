@@ -88,35 +88,42 @@ public class CEdu{
     static void solve(long a, long b, long c) {
         System.out.println((a|b) & (b|c) & (c|a));
     }
-    public static void main(String[] args) throws Exception {
-        FastReader sc = new FastReader();
-        int t = sc.nextInt();
-        test: while(t-- > 0) {
-            int n = sc.nextInt();
-            long[] arr = new long[n];
-            long sum = Long.MIN_VALUE;
-            long a = Long.MAX_VALUE;
-            for(int i = 0; i < n; i++) {
-                arr[i] = sc.nextLong();
-                sum = Math.max(sum, arr[i]);
-                a = Math.min(a,arr[i]);
-
-            }
-           boolean found = false;
-            long pre = -1;
-            for(long i: arr) {
-                if(i < pre) {
-                    found = true;
-                    break;
-                }else {
-                    pre = Math.max(pre, i);
-                }
-            }
-            if(found) {
-                System.out.println("YES");
-            }else {
-                System.out.println("NO");
+    static long get(long[] arr , int low, int high) {
+        long len = high-low+1;
+        for(int i = low; i <= high; i++) {
+            if(arr[i] == 0) {
+                len++;
             }
         }
+        return len;
+    }
+    public static void main(String[] args) throws Exception {
+        FastReader sc = new FastReader();
+       int t = sc.nextInt();
+        test: while(t-- > 0) {
+           int n = sc.nextInt();
+           long[] arr = new long[n];
+           long s = 0;
+           for(int i = 0; i < n; i++) {
+               arr[i] = sc.nextLong();
+
+                   s = s + arr[i];
+
+
+
+           }
+           long o = arr[0];
+           for(int i = 1; i < n; i++) {
+               o = o|arr[i];
+           }
+           System.out.println(o);
+//           if(s % 2 == 0) {
+//               System.out.println(s/2);
+//           }else {
+//               System.out.println(s);
+//           }
+
+        }
+
     }
 }
